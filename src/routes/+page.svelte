@@ -1,2 +1,7 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+  import { TextGradient } from "@barbajoe/svelte-lib";
+</script>
+
+<h1>Welcome to barbajoe's <TextGradient>Tech Blog</TextGradient></h1>
+
+<p>TODO: make a post 🤣</p>
