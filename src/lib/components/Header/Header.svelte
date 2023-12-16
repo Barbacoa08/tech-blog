@@ -12,8 +12,10 @@
 </script>
 
 <Link aria-label="Homepage">
-  <Icons.Me />
-  <Icons.Notebook />
+  <div class="site-header-logo">
+    <Icons.Me />
+    <Icons.Notebook />
+  </div>
 </Link>
 
 <ul class="site-header-links">
@@ -35,6 +37,10 @@
 </ul>
 
 <style>
+  div.site-header-logo {
+    display: flex;
+  }
+
   ul li.no-hover:hover,
   ul li.no-hover:focus {
     color: var(--color-link-text-active);
