@@ -17,6 +17,7 @@
   "type": "module",
   "scripts": {
     "all": "pnpm clean && bun install && pnpm format && pnpm lint && pnpm check && pnpm build && pnpm test",
+    "github": "pnpm i && pnpm lint && pnpm check && pnpm build && pnpm test",
     "clean": "rm -rf .netlify .svelte-kit build",
     "start": "vite dev",
     "build": "vite build",
@@ -26,7 +27,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "lint": "prettier --check . && eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write . --log-level warn"
   },
   "devDependencies": {
     "@sveltejs/adapter-netlify": "3.0.0",

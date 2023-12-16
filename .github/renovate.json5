@@ -1,0 +1,13 @@
+// copy-pasted (mostly) from: https://github.com/sveltejs/vite-plugin-svelte/blob/main/.github/renovate.json5
+{
+  extends: [
+    "config:base",
+    "schedule:weekly", // each monday
+    "group:allNonMajor", // batch non-majors into one PR
+    ":semanticCommits", // nicer commit messages
+  ],
+  assignees: ["Barbacoa08"],
+  reviewers: ["Barbacoa08"],
+  labels: ["dependencies"],
+  rangeStrategy: "pin",
+}
