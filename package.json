@@ -16,7 +16,7 @@
   ],
   "type": "module",
   "scripts": {
-    "all": "pnpm clean && bun install && pnpm format && pnpm lint && pnpm check && pnpm build && pnpm test",
+    "all": "pnpm clean && pnpm install && pnpm format && pnpm lint && pnpm check && pnpm build && pnpm test",
     "github": "pnpm i && pnpm lint && pnpm check && pnpm build && pnpm test",
     "clean": "rm -rf .netlify .svelte-kit build",
     "start": "vite dev",
