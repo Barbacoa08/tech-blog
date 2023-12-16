@@ -1,12 +1,10 @@
 <script lang="ts">
-  import { Link, Modal } from "@barbajoe/svelte-lib";
+  import { Link, Modal, Icons } from "@barbajoe/svelte-lib";
   import { onMount } from "svelte";
   import { fly } from "svelte/transition";
   import Search from "svelte-search";
 
   import type { TermsResult } from "$types/SearchAPI";
-
-  import { SearchIcon } from "$lib/icons";
 
   let showModal = false;
   let value = "";
@@ -101,7 +99,7 @@
 <svelte:window on:keydown={handleKeydown} on:keyup={handleKeyUp} />
 
 <button aria-label="Search" on:click={() => (showModal = true)}>
-  <SearchIcon width="1rem" height="1rem" />
+  <Icons.Search width="1rem" height="1rem" />
   <span>{osKey} K</span>
 </button>
 

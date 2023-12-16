@@ -1,12 +1,20 @@
 <script lang="ts">
-  import { page } from "$app/stores";
+  import { Link, Icons } from "@barbajoe/svelte-lib";
+
   import SiteSearch from "./SiteSearch.svelte";
+
+  import { page } from "$app/stores";
 
   $: isHome = $page.url.pathname === "/";
 
   $: isAbout = $page.url.pathname.startsWith("/about");
   $: isPosts = $page.url.pathname.startsWith("/post");
 </script>
+
+<Link aria-label="Homepage">
+  <Icons.Me />
+  <Icons.Notebook />
+</Link>
 
 <ul class="site-header-links">
   <li class:active={isHome}>
