@@ -9,8 +9,8 @@ devDependencies:
     specifier: 0.1.8
     version: 0.1.8
   '@barbajoe/svelte-lib':
-    specifier: 0.2.6
-    version: 0.2.6(@barbajoe/css-lib@0.1.8)(svelte@4.2.8)
+    specifier: 0.2.7
+    version: 0.2.7(@barbajoe/css-lib@0.1.8)(svelte@4.2.8)
   '@sveltejs/adapter-netlify':
     specifier: 3.0.0
     version: 3.0.0(@sveltejs/kit@2.0.0)
@@ -85,8 +85,8 @@ packages:
     resolution: {integrity: sha512-kdkHyxDZDvceQJbOnkR5GE5eM63IAHYAq3zGYKxRpvgRTT891WMAK/CCZ2smcKP3wQccNQYZCMxF6V/swQV1MQ==}
     dev: true
 
-  /@barbajoe/svelte-lib@0.2.6(@barbajoe/css-lib@0.1.8)(svelte@4.2.8):
-    resolution: {integrity: sha512-xFY63iK4P1kzT2rPOA22HbE43zd8ZC/SfG3N/beuZlUYADajXlpg16G5j+VxW7NVMOWk0hlDLghaUyYr/uQXvg==}
+  /@barbajoe/svelte-lib@0.2.7(@barbajoe/css-lib@0.1.8)(svelte@4.2.8):
+    resolution: {integrity: sha512-CqW+Q46vAzg9NiMJMv09nabAf8Evc6xo+lXVkPWDyeqlWZgsO5O20o9I3cMlUeTGCXveidyDxwh3JO9gOMVb5A==}
     peerDependencies:
       '@barbajoe/css-lib': '*'
       svelte: ^4
