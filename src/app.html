@@ -5,6 +5,16 @@
     <link rel="icon" href="%sveltekit.assets%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     %sveltekit.head%
+
+    <script async src="https://rum.cronitor.io/script.js"></script>
+    <script>
+      window.cronitor =
+        window.cronitor ||
+        function () {
+          (window.cronitor.q = window.cronitor.q || []).push(arguments);
+        };
+      cronitor("config", { clientKey: "88f49def2c7d0b72376b5c5414a51219" });
+    </script>
   </head>
 
   <body data-sveltekit-preload-data="hover">
