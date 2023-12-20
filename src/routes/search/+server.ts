@@ -6,8 +6,8 @@ import type { TermsResult } from "$types/SearchAPI";
 
 export const GET = (async () => {
   return json([
-    { tags: [], title: "Home", url: "/" },
-    { tags: [], title: "Posts placeholder", url: "/post" },
-    { tags: [], title: "About", url: "/about" },
+    { tags: ["homepage", "root"], title: "Home", url: "/" },
+    { tags: ["posts root"], title: "Posts", url: "/post" },
+    { tags: ["why this exists"], title: "About", url: "/about" },
   ] as TermsResult[]);
 }) satisfies RequestHandler;
