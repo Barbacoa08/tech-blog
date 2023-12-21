@@ -12,8 +12,16 @@
 
 {#if !!block.text || block.text === ""}
   <Text {block} />
-{:else if block.type === "h2"}
+{:else if block.type === "h1"}
   <h2><Serialize content={block.children} /></h2>
+{:else if block.type === "h2"}
+  <h3><Serialize content={block.children} /></h3>
+{:else if block.type === "h3"}
+  <h4><Serialize content={block.children} /></h4>
+{:else if block.type === "h4"}
+  <h5><Serialize content={block.children} /></h5>
+{:else if block.type === "h5" || block.type === "h6"}
+  <h6><Serialize content={block.children} /></h6>
 {:else if block.type === "p"}
   <p><Serialize content={block.children} /></p>
 {:else if !block.type && block.children.length > 0}
