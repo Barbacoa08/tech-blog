@@ -2,7 +2,7 @@
 
 # tech-blog
 
-[See it in action here](https://blog.barbajoe.tech/).s
+[See it in action here](https://blog.barbajoe.tech/).
 
 ## analytics by [Cronitor RUM](https://cronitor.io/real-user-monitoring)
 

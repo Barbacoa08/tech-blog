@@ -25,5 +25,5 @@
 <p>
   I'll be using this blog as a journal. I will document what I've found that I want to remember and
   what I've accomplished. I hope that you find it interesting, easy, and helpful. With that said,
-  let's get good!
+  let's get good! 🥳 🎉
 </p>
