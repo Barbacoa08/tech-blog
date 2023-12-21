@@ -148,7 +148,10 @@
     border-radius: 1rem;
     background-color: var(--list-item-background-color);
   }
-  ul li:hover {
+  ul li:hover,
+  ul li:focus,
+  ul li:active,
+  ul li:focus-within {
     background-color: var(--list-item-background-color-hover);
   }
 
