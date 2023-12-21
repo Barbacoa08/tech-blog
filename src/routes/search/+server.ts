@@ -25,10 +25,11 @@ export const GET = (async () => {
   }
 
   const results: TermsResult[] = [
-    { tags: ["homepage", "root"], title: "Home", url: "/" },
+    { tags: ["site root"], title: "Home", url: "/" },
     { tags: ["posts root"], title: "Posts", url: "/post" },
     { tags: ["why this exists"], title: "About", url: "/about" },
   ] as TermsResult[];
+
   posts.forEach((post) => {
     const { title, slug, tags, status, publishedDate } = post;
 

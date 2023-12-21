@@ -104,7 +104,7 @@
 </button>
 
 <Modal bind:showModal>
-  <svelte:fragment slot="dialog-header-text">Topic + Post Search</svelte:fragment>
+  <svelte:fragment slot="dialog-header-text">Post Search</svelte:fragment>
 
   <Search autofocus label="Search Titles and Tags" bind:value />
 
