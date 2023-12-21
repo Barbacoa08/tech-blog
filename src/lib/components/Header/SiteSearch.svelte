@@ -104,7 +104,7 @@
 </button>
 
 <Modal bind:showModal>
-  <svelte:fragment slot="dialog-header-text">Topic + Post Search</svelte:fragment>
+  <svelte:fragment slot="dialog-header-text">Post Search</svelte:fragment>
 
   <Search autofocus label="Search Titles and Tags" bind:value />
 
@@ -148,7 +148,10 @@
     border-radius: 1rem;
     background-color: var(--list-item-background-color);
   }
-  ul li:hover {
+  ul li:hover,
+  ul li:focus,
+  ul li:active,
+  ul li:focus-within {
     background-color: var(--list-item-background-color-hover);
   }
 

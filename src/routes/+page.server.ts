@@ -1,6 +1,5 @@
 import { error } from "@sveltejs/kit";
-
-import type { Post } from "$types/CMSTypes";
+import type { Post } from "$types/payload-types.js";
 
 export interface PageData {
   posts: Post[];
