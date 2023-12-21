@@ -37,7 +37,7 @@ export const GET = (async () => {
       results.push({
         title,
         url: `/post/${slug}`,
-        tags: tags?.map((tag) => tag.name || "") || [],
+        tags: tags?.map((tag) => tag.name?.slice(6).toLowerCase() || "") || [],
       });
     }
   });
