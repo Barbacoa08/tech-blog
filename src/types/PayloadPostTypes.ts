@@ -1,5 +1,5 @@
 export interface GenericPostBlock {
-  type: "h2" | "p" | "link" | "ul" | "ol" | "li";
+  type: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "link" | "ul" | "ol" | "li";
   children: PostContent[];
 }
 
