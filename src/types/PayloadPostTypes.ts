@@ -9,6 +9,7 @@ export interface TextPostBlock {
   italic?: boolean;
   underline?: boolean;
   strikethrough?: boolean;
+  code?: boolean;
 }
 
 export interface LinkPostBlock extends GenericPostBlock {
