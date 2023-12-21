@@ -1,33 +1,17 @@
-import type { Post } from "$types/CMSTypes";
+import { PAYLOAD_CMS_API_URL } from "$env/static/private";
+
+import type { Fetch } from "$types/Fetch";
+import type { Post } from "$types/payload-types";
 
 export interface PageData {
   posts: Post[];
 }
 
-const fakepost: Post = {
-  id: "fake",
-  title: "Fake Post: TODO: make a post 🤣",
-  slug: "fake-post",
-  status: "published",
-  createdAt: "2021-01-01T00:00:00.000Z",
-  updatedAt: "2021-01-01T00:00:00.000Z",
-  publishedDate: "2021-01-01T00:00:00.000Z",
-};
-const fakedisabledpost: Post = {
-  id: "fake-disabled",
-  title: "Fake Disabled Post",
-  slug: "fake-disabled-post",
-  status: "draft",
-  createdAt: "2021-01-01T00:00:00.000Z",
-  updatedAt: "2021-01-01T00:00:00.000Z",
-  publishedDate: "2021-01-01T00:00:00.000Z",
-};
-
 export const load = async () => {
   let posts: Post[] = [];
 
   try {
-    posts = [fakepost, fakedisabledpost];
+    posts = await getPosts(fetch);
   } catch (error) {
     console.error(error);
   }
@@ -35,4 +19,16 @@ export const load = async () => {
   return {
     posts,
   };
+};
+
+const getPosts = async (fetch: Fetch) => {
+  const postsResult = await fetch(`${PAYLOAD_CMS_API_URL}posts`);
+  const postsData: { docs: Post[] } = await postsResult.json();
+  const posts = postsData.docs
+    .filter((post) => !!post.status && post.tags?.some((tag) => tag?.name?.startsWith("tech-")))
+    .sort((a, b) => {
+      return new Date(b.publishedDate || 0).getTime() - new Date(a.publishedDate || 0).getTime();
+    });
+
+  return posts;
 };
