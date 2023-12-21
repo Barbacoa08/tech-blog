@@ -11,7 +11,6 @@ export interface Config {
     icon: Icon;
     posts: Post;
     tags: Tag;
-    topics: Topic;
     users: User;
     program: Program;
   };
@@ -60,27 +59,6 @@ export interface User {
 export interface Tag {
   id: string;
   name?: string;
-}
-export interface Topic {
-  id: string;
-  title?: string;
-  slug?: string;
-  icon?: Icon;
-  tags?: Tag[];
-  content?: PostContent[];
-  accordions: {
-    accordionheader: string;
-    accordionItems: {
-      accordionitemheader?: string;
-      accordionitemcontent: PostContent[];
-      id?: string;
-    }[];
-    id?: string;
-  }[];
-  status?: "draft" | "published";
-  createdAt: string;
-  updatedAt: string;
-  publishedDate?: string;
 }
 export interface Program {
   id: string;
