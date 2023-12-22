@@ -43,7 +43,7 @@
 
   ul li.no-hover:hover,
   ul li.no-hover:focus {
-    color: var(--color-link-text-active);
     border-bottom: 2px solid transparent;
+    padding: 0 0.5rem;
   }
 </style>
