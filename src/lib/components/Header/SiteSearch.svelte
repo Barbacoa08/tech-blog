@@ -166,17 +166,17 @@
     border: 1px solid var(--color-link-text);
     padding: 0.3rem 0.5rem;
     border-radius: 0.5rem;
-  }
-  button > span {
-    padding-left: 0.25rem;
-  }
 
-  @media (max-width: 1080px) {
-    button {
-      transform: scale(1.15);
+    &:hover {
+      color: var(--color-text);
+      border-color: var(--color-text);
+      background-color: var(--color-bg);
+      box-shadow: inset 0 0 0 0.1rem var(--color-link-text);
+      transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
     }
-    button > span {
-      display: none;
+
+    & > span {
+      padding-left: 0.25rem;
     }
   }
 </style>
