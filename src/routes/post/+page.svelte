@@ -17,7 +17,7 @@
 
 <h1>All <Icons.WordBubble /> <TextGradient>Posts</TextGradient></h1>
 
-<p>Thoughts and musings. Ideas and opinions. Personal experiences and humble opinions.</p>
+<p>Thoughts and musings. Ideas and opinions. Personal experiences and humble notions.</p>
 
 <ul>
   {#each posts as { id, slug, title, status, author, publishedDate, updatedAt } (id)}
