@@ -31,7 +31,7 @@
   },
   "devDependencies": {
     "@barbajoe/css-lib": "0.1.8",
-    "@barbajoe/svelte-lib": "0.2.11",
+    "@barbajoe/svelte-lib": "0.2.12",
     "@sveltejs/adapter-netlify": "3.0.1",
     "@sveltejs/kit": "2.0.6",
     "@sveltejs/vite-plugin-svelte": "3.0.1",
