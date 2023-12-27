@@ -40,6 +40,15 @@
         >
           <Icons.LinkedIn height="1.3rem" width="1.3rem" />
         </Link>
+
+        <Link
+          href="https://github.com/Barbacoa08"
+          isExternal
+          class="link"
+          aria-label="GitHub profile"
+        >
+          <Icons.GitHub height="1.3rem" width="1.3rem" />
+        </Link>
       </span>
     </div>
   </svelte:fragment>
