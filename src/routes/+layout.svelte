@@ -17,33 +17,53 @@
   <slot />
 
   <svelte:fragment slot="footer">
-    &forall; by <Link isExternal href="https://barbajoe.tech/">
-      <code>barbajoe</code>
-    </Link>
+    <div>
+      &forall; by <Link isExternal href="https://barbajoe.tech/">
+        <code>barbajoe</code>
+      </Link>
 
-    <span class="social-icons">
-      <Link isExternal href="https://bsky.app/profile/barbajoe.tech" class="link">
-        <Icons.Bluesky height="0.7rem" width="0.7rem" />
-      </Link>
-      |
-      <Link isExternal href="https://www.linkedin.com/in/joseph-sebast/" class="link">
-        <Icons.LinkedIn height="0.7rem" width="0.7rem" />
-      </Link>
-    </span>
+      <span class="social-icons">
+        <Link
+          href="https://bsky.app/profile/barbajoe.tech"
+          isExternal
+          class="link"
+          aria-label="Bluesky profile"
+        >
+          <Icons.Bluesky height="1rem" width="1rem" />
+        </Link>
+
+        <Link
+          href="https://www.linkedin.com/in/joseph-sebast/"
+          isExternal
+          class="link"
+          aria-label="LinkedIn profile"
+        >
+          <Icons.LinkedIn height="1.3rem" width="1.3rem" />
+        </Link>
+      </span>
+    </div>
   </svelte:fragment>
 </Layout>
 
 <SvelteToast {options} />
 
 <style>
-  .social-icons {
-    padding-left: 0.1rem;
+  div {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
 
-    & .link {
-      padding: 0 0.5rem;
+    & .social-icons {
+      padding-left: 0.3rem;
+      display: inline-flex;
+      align-items: center;
 
-      &:last-child {
-        padding-right: 0;
+      & .link {
+        padding: 0 0.5rem;
+
+        &:last-child {
+          padding-right: 0;
+        }
       }
     }
   }
