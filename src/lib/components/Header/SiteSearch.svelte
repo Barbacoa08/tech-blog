@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Link, Modal, Icons } from "@barbajoe/svelte-lib";
+  import { Link, Modal, Icons, Button } from "@barbajoe/svelte-lib";
   import { onMount } from "svelte";
   import { fly } from "svelte/transition";
   import Search from "svelte-search";
@@ -98,10 +98,15 @@
 
 <svelte:window on:keydown={handleKeydown} on:keyup={handleKeyUp} />
 
-<button aria-label="Search" on:click={() => (showModal = true)}>
+<Button
+  variant="icon"
+  style="font-size: 0.7rem"
+  aria-label="Search"
+  on:click={() => (showModal = true)}
+>
   <Icons.Search width="1rem" height="1rem" />
   <span>{osKey} K</span>
-</button>
+</Button>
 
 <Modal bind:showModal>
   <svelte:fragment slot="dialog-header-text">Post Search</svelte:fragment>
@@ -153,30 +158,5 @@
   ul li:active,
   ul li:focus-within {
     background-color: var(--list-item-background-color-hover);
-  }
-
-  button {
-    color: var(--color-link-text);
-    background: none;
-    cursor: pointer;
-
-    display: flex;
-    align-items: center;
-
-    border: 1px solid var(--color-link-text);
-    padding: 0.3rem 0.5rem;
-    border-radius: 0.5rem;
-
-    &:hover {
-      color: var(--color-text);
-      border-color: var(--color-text);
-      background-color: var(--color-bg);
-      box-shadow: inset 0 0 0 0.1rem var(--color-link-text);
-      transition: all 0.15s cubic-bezier(0.165, 0.84, 0.44, 1);
-    }
-
-    & > span {
-      padding-left: 0.25rem;
-    }
   }
 </style>
