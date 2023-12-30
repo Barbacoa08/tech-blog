@@ -28,7 +28,7 @@
 </h1>
 <p class="sub-title">
   <span>posted on: {formatDate(publishedDate)}</span>
-  <span><Share {title} {url} /></span>
+  <span><Share text={title} {url} /></span>
 </p>
 
 <Serialize {accordions} {content} />
