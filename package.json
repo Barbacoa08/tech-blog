@@ -33,10 +33,10 @@
     "@barbajoe/css-lib": "0.1.8",
     "@barbajoe/svelte-lib": "0.3.2",
     "@sveltejs/adapter-netlify": "3.0.1",
-    "@sveltejs/kit": "2.0.6",
+    "@sveltejs/kit": "2.1.0",
     "@sveltejs/vite-plugin-svelte": "3.0.1",
-    "@typescript-eslint/eslint-plugin": "6.17.0",
-    "@typescript-eslint/parser": "6.17.0",
+    "@typescript-eslint/eslint-plugin": "6.18.1",
+    "@typescript-eslint/parser": "6.18.1",
     "@zerodevx/svelte-toast": "0.9.5",
     "eslint": "8.56.0",
     "eslint-config-prettier": "9.1.0",
@@ -48,7 +48,7 @@
     "svelte-search": "2.0.2",
     "tslib": "2.6.2",
     "typescript": "5.3.3",
-    "vite": "5.0.10",
-    "vitest": "1.1.1"
+    "vite": "5.0.11",
+    "vitest": "1.1.3"
   }
 }
