@@ -16,7 +16,7 @@
 
 <svelte:head>
   <title>Blog Post: {title}</title>
-  <meta name="description" content={`barbajoe's Fighter Advice on ${title}`} />
+  <meta name="description" content={`barbajoe's blog on ${title}`} />
 </svelte:head>
 
 <h1 class="title">
