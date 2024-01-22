@@ -32,7 +32,7 @@
   "devDependencies": {
     "@barbajoe/css-lib": "0.1.9",
     "@barbajoe/svelte-lib": "0.3.3",
-    "@sveltejs/adapter-netlify": "3.0.2",
+    "@sveltejs/adapter-netlify": "4.1.0",
     "@sveltejs/kit": "2.3.3",
     "@sveltejs/vite-plugin-svelte": "3.0.1",
     "@typescript-eslint/eslint-plugin": "6.19.0",
