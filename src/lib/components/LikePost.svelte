@@ -4,6 +4,7 @@
   export let slug: string;
 
   const handleLike = async () => {
+    disabled = true;
     const response = await fetch("/likes", {
       method: "POST",
       headers: {
@@ -11,11 +12,11 @@
       },
       body: JSON.stringify({ slug }),
     });
-
-    console.info(await response.json());
+    disabled = false;
   };
+  $: disabled = false;
 </script>
 
-<Button on:click={handleLike} aria-label="I like this!">
+<Button on:click={handleLike} {disabled} aria-label="I like this!">
   <Icons.CalendarHeart />
 </Button>
