@@ -14,13 +14,10 @@ interface PostLike {
 }
 
 export const POST: RequestHandler = async ({ request, getClientAddress }): Promise<Response> => {
-  let likes = { total: 0, user: 0 };
+  const likes = { total: 0, user: 0 };
   const ip = dev ? "localhost" : getClientAddress();
-
   const { slug } = await request.json();
-
-  const uri = MONGODB_URI;
-  const client = new MongoClient(uri);
+  const client = new MongoClient(MONGODB_URI);
 
   try {
     await client.connect();
@@ -49,6 +46,28 @@ export const POST: RequestHandler = async ({ request, getClientAddress }): Promi
       likes.total++;
       likes.user = user?.likes ?? 0;
     }
+  } catch (e) {
+    console.error("Error", e);
+  } finally {
+    await client.close();
+  }
+
+  return new Response(JSON.stringify({ likes }));
+};
+
+export const GET: RequestHandler = async ({ url, getClientAddress }): Promise<Response> => {
+  const likes = { total: 0, user: 0 };
+  const ip = dev ? "localhost" : getClientAddress();
+  const slug = url.searchParams.get("slug");
+  const client = new MongoClient(MONGODB_URI);
+
+  try {
+    await client.connect();
+    const likesCollection = client.db().collection("likes");
+
+    const postLike = await likesCollection.findOne<PostLike>({ slug });
+    likes.total = postLike ? postLike.users.reduce((prev, curr) => prev + curr.likes, 0) : 0;
+    likes.user = postLike?.users.find((user) => user.ip === ip)?.likes ?? 0;
   } catch (e) {
     console.error("Error", e);
   } finally {
