@@ -1,15 +1,17 @@
 <script lang="ts">
-  import { page } from "$app/stores";
-  import { Serialize } from "$lib/cms-components";
-  import { Share } from "$lib/components";
-  import { formatDate } from "$lib/utils";
   import { Icons, TextGradient } from "@barbajoe/svelte-lib";
+
+  import { page } from "$app/stores";
+
+  import { Serialize } from "$lib/cms-components";
+  import { LikePost, Share } from "$lib/components";
+  import { formatDate } from "$lib/utils";
 
   import type { PageData } from "./$types";
 
   export let data: PageData;
   $: ({
-    post: { accordions = [], content = [], title = "", author, publishedDate, slug },
+    post: { accordions = [], content = [], title = "", author, publishedDate, slug = "" },
   } = data);
   $: url = `${$page.url.origin}/post/${slug}`;
 </script>
@@ -33,6 +35,10 @@
 
 <Serialize {accordions} {content} />
 
+<div class="like-post">
+  <LikePost {slug} />
+</div>
+
 <style>
   .title {
     margin-bottom: 0;
@@ -45,5 +51,12 @@
     align-items: center;
     margin-top: 0.5rem;
     margin-bottom: 2rem;
+  }
+
+  div.like-post {
+    margin-top: 2rem;
+
+    display: flex;
+    justify-content: flex-end;
   }
 </style>
