@@ -76,3 +76,26 @@ export const GET: RequestHandler = async ({ url, getClientAddress }): Promise<Re
 
   return new Response(JSON.stringify({ likes }));
 };
+
+export const DELETE: RequestHandler = async ({ request, getClientAddress }): Promise<Response> => {
+  if (!dev) {
+    return new Response("When not in dev mode, DELETE is an illegal action.", { status: 405 });
+  }
+
+  const ip = dev ? "localhost" : getClientAddress();
+  const { slug } = await request.json();
+  const client = new MongoClient(MONGODB_URI);
+
+  try {
+    await client.connect();
+
+    const likesCollection = client.db().collection("likes");
+    await likesCollection.deleteOne({ slug });
+  } catch (e) {
+    console.error("Error", e);
+  } finally {
+    await client.close();
+  }
+
+  return new Response();
+};

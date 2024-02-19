@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { Icons, TextGradient } from "@barbajoe/svelte-lib";
+  import { dev } from "$app/environment";
+  import { Button, Icons, TextGradient } from "@barbajoe/svelte-lib";
 
   import { page } from "$app/stores";
 
@@ -37,6 +38,23 @@
 
 <div class="like-post">
   <LikePost {slug} />
+
+  {#if dev}
+    <Button
+      variant="icon"
+      aria-label="I hate this!"
+      on:click={() =>
+        fetch("/likes", {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ slug }),
+        })}
+    >
+      <Icons.Trash />
+    </Button>
+  {/if}
 </div>
 
 <style>
