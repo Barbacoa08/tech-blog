@@ -1,4 +1,6 @@
-export async function POST({ request, getClientAddress }: Request): Promise<Response> {
+import type { RequestHandler } from "@sveltejs/kit";
+
+export const POST: RequestHandler = async ({ request, getClientAddress }): Promise<Response> => {
   const { slug } = await request.json();
 
   return new Response(
@@ -8,4 +10,4 @@ export async function POST({ request, getClientAddress }: Request): Promise<Resp
       requestHeaders: request.headers,
     }),
   );
-}
+};
