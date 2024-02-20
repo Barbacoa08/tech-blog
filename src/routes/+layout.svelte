@@ -33,6 +33,15 @@
         </Link>
 
         <Link
+          href="https://twitter.com/barbajoedottech/"
+          isExternal
+          class="link"
+          aria-label="Twitter/X profile"
+        >
+          <Icons.TwitterX height="1.3rem" width="1.3rem" />
+        </Link>
+
+        <Link
           href="https://www.linkedin.com/in/joseph-sebast/"
           isExternal
           class="link"
