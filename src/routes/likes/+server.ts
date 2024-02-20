@@ -52,7 +52,10 @@ export const POST: RequestHandler = async ({ request, getClientAddress }): Promi
       likes.user = user.likes ?? 0;
     }
   } catch (e) {
-    console.error("Error", e);
+    return new Response(
+      JSON.stringify({ error: "An error occurred while connecting to the DB." }),
+      { status: 500 },
+    );
   } finally {
     await client.close();
   }
@@ -74,7 +77,10 @@ export const GET: RequestHandler = async ({ url, getClientAddress }): Promise<Re
     likes.total = postLike ? postLike.users.reduce((prev, curr) => prev + curr.likes, 0) : 0;
     likes.user = postLike?.users.find((user) => user.ip === ip)?.likes ?? 0;
   } catch (e) {
-    console.error("Error", e);
+    return new Response(
+      JSON.stringify({ error: "An error occurred while connecting to the DB." }),
+      { status: 500 },
+    );
   } finally {
     await client.close();
   }
@@ -101,7 +107,10 @@ export const DELETE: RequestHandler = async ({ request, getClientAddress }): Pro
       await likesCollection.updateOne({ slug }, { $set: { users: updatedUsers } });
     }
   } catch (e) {
-    console.error("Error", e);
+    return new Response(
+      JSON.stringify({ error: "An error occurred while connecting to the DB." }),
+      { status: 500 },
+    );
   } finally {
     await client.close();
   }
