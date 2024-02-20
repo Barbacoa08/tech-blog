@@ -6,8 +6,14 @@
   import { toast } from "@zerodevx/svelte-toast";
 
   onMount(async () => {
-    const response = await fetch(`/likes?slug=${slug}`).then((res) => res.json());
-    likes = response.likes;
+    const response = await fetch(`/likes?slug=${slug}`);
+    if (!response.ok) {
+      console.error(`${response.status} - ${response.statusText}`);
+      toast.push(await response.text());
+    } else {
+      const result = await response.json();
+      likes = result.likes;
+    }
   });
 
   export let slug: string;
