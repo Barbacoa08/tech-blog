@@ -30,7 +30,7 @@ export const POST: RequestHandler = async ({ request, getClientAddress }): Promi
       await likesCollection.insertOne({ slug, users: [{ ip, likes: 1 }] } as PostLike);
     } else {
       likes.total = postLike ? postLike.users.reduce((prev, curr) => prev + curr.likes, 0) : 0;
-      const user = postLike?.users.find((user) => user.ip === ip);
+      let user = postLike?.users.find((user) => user.ip === ip);
 
       if (user && user.likes < 5) {
         user.likes++;
@@ -43,10 +43,11 @@ export const POST: RequestHandler = async ({ request, getClientAddress }): Promi
           { $push: { users: { ip, likes: 1 } } },
           { upsert: true },
         );
+        user = { ip, likes: 1 };
       }
 
       likes.total++;
-      likes.user = user?.likes ?? 0;
+      likes.user = user.likes ?? 0;
     }
   } catch (e) {
     console.error("Error", e);
