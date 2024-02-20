@@ -61,7 +61,7 @@
 
   {#if likes.user > 0}
     <div class="like-count" in:fade>
-      {likes.user}
+      {likes.total}
     </div>
   {/if}
 </Button>
