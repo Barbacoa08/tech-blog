@@ -93,7 +93,11 @@ export const DELETE: RequestHandler = async ({ request, getClientAddress }): Pro
     await client.connect();
 
     const likesCollection = client.db().collection("likes");
-    await likesCollection.deleteOne({ slug });
+    const post = await likesCollection.findOne<PostLike>({ slug });
+    const updatedUsers = post?.users.filter((user) => user.ip !== ip);
+    if (post && post.users.length > 0 && post.users.length !== updatedUsers?.length) {
+      await likesCollection.updateOne({ slug }, { $set: { users: updatedUsers } });
+    }
   } catch (e) {
     console.error("Error", e);
   } finally {
