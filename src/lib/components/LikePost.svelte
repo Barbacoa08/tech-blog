@@ -1,6 +1,9 @@
 <script lang="ts">
   import { onMount } from "svelte";
+  import { fade } from "svelte/transition";
+
   import { Button, Icons } from "@barbajoe/svelte-lib";
+  import { toast } from "@zerodevx/svelte-toast";
 
   onMount(async () => {
     const response = await fetch(`/likes?slug=${slug}`).then((res) => res.json());
@@ -17,10 +20,19 @@
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ slug }),
-    }).then((res) => res.json());
-    likes = response.likes;
+    });
+
+    if (response.ok) {
+      likes = (await response.json()).likes;
+    } else {
+      console.error(`${response.status} - ${response.statusText}`);
+      toast.push(`${await response.text()}`, {
+        duration: 5000,
+      });
+    }
     disabled = false;
   };
+
   $: likes = { total: 0, user: 0 };
   $: disabled = false;
   $: if (likes.user >= 5) disabled = true;
@@ -42,8 +54,8 @@
   {/if}
 
   {#if likes.user > 0}
-    <div class="like-count">
-      ({likes.user})
+    <div class="like-count" in:fade>
+      {likes.user}
     </div>
   {/if}
 </Button>

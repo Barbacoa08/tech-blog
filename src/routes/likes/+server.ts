@@ -32,9 +32,11 @@ export const POST: RequestHandler = async ({ request, getClientAddress }): Promi
       likes.total = postLike ? postLike.users.reduce((prev, curr) => prev + curr.likes, 0) : 0;
       const user = postLike?.users.find((user) => user.ip === ip);
 
-      if (user) {
+      if (user && user.likes < 5) {
         user.likes++;
         await likesCollection.updateOne({ slug }, { $set: { users: postLike.users } });
+      } else if (user) {
+        return new Response("You've reached the maximum number of likes. (5)", { status: 403 });
       } else {
         await likesCollection.updateOne(
           { slug },
