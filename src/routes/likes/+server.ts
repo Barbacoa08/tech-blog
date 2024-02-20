@@ -13,6 +13,8 @@ interface PostLike {
   users: User[];
 }
 
+const LikeCollection = "likes";
+
 export const POST: RequestHandler = async ({ request, getClientAddress }): Promise<Response> => {
   const likes = { total: 0, user: 0 };
   const ip = dev ? "localhost" : getClientAddress();
@@ -21,7 +23,7 @@ export const POST: RequestHandler = async ({ request, getClientAddress }): Promi
 
   try {
     await client.connect();
-    const likesCollection = client.db().collection("likes");
+    const likesCollection = client.db().collection(LikeCollection);
     const postLike = await likesCollection.findOne<PostLike>({ slug });
 
     if (!postLike) {
@@ -66,7 +68,7 @@ export const GET: RequestHandler = async ({ url, getClientAddress }): Promise<Re
 
   try {
     await client.connect();
-    const likesCollection = client.db().collection("likes");
+    const likesCollection = client.db().collection(LikeCollection);
 
     const postLike = await likesCollection.findOne<PostLike>({ slug });
     likes.total = postLike ? postLike.users.reduce((prev, curr) => prev + curr.likes, 0) : 0;
@@ -92,7 +94,7 @@ export const DELETE: RequestHandler = async ({ request, getClientAddress }): Pro
   try {
     await client.connect();
 
-    const likesCollection = client.db().collection("likes");
+    const likesCollection = client.db().collection(LikeCollection);
     const post = await likesCollection.findOne<PostLike>({ slug });
     const updatedUsers = post?.users.filter((user) => user.ip !== ip);
     if (post && post.users.length > 0 && post.users.length !== updatedUsers?.length) {
