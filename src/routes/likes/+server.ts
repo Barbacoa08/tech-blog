@@ -6,7 +6,7 @@ import { MONGODB_URI } from "$env/static/private";
 import { MongoClient } from "mongodb";
 
 interface User {
-  ip: string;
+  uuid: string;
   likes: number;
 }
 interface PostLike {
@@ -17,10 +17,9 @@ interface PostLike {
 const MongoDbName = "blog";
 const LikeCollection = "likes";
 
-export const POST: RequestHandler = async ({ request, getClientAddress }): Promise<Response> => {
+export const POST: RequestHandler = async ({ request }): Promise<Response> => {
   const likes = { total: 0, user: 0 };
-  const ip = dev ? "localhost" : getClientAddress();
-  const { slug } = await request.json();
+  const { slug, uuid } = await request.json();
   const client = new MongoClient(MONGODB_URI);
 
   try {
@@ -31,10 +30,10 @@ export const POST: RequestHandler = async ({ request, getClientAddress }): Promi
     if (!postLike) {
       likes.total = 1;
       likes.user = 1;
-      await likesCollection.insertOne({ slug, users: [{ ip, likes: 1 }] } as PostLike);
+      await likesCollection.insertOne({ slug, users: [{ uuid, likes: 1 }] } as PostLike);
     } else {
       likes.total = postLike ? postLike.users.reduce((prev, curr) => prev + curr.likes, 0) : 0;
-      let user = postLike?.users.find((user) => user.ip === ip);
+      let user = postLike?.users.find((user) => user.uuid === uuid);
 
       if (user && user.likes < 5) {
         user.likes++;
@@ -44,10 +43,10 @@ export const POST: RequestHandler = async ({ request, getClientAddress }): Promi
       } else {
         await likesCollection.updateOne(
           { slug },
-          { $push: { users: { ip, likes: 1 } } },
+          { $push: { users: { uuid, likes: 1 } } },
           { upsert: true },
         );
-        user = { ip, likes: 1 };
+        user = { uuid, likes: 1 };
       }
 
       likes.total++;
@@ -62,19 +61,19 @@ export const POST: RequestHandler = async ({ request, getClientAddress }): Promi
   return new Response(JSON.stringify({ likes }));
 };
 
-export const GET: RequestHandler = async ({ url, getClientAddress }): Promise<Response> => {
+export const GET: RequestHandler = async ({ url }): Promise<Response> => {
   const likes = { total: 0, user: 0 };
-  const ip = dev ? "localhost" : getClientAddress();
+  const uuid = dev ? "localhost" : url.searchParams.get("uuid");
   const slug = url.searchParams.get("slug");
   const client = new MongoClient(MONGODB_URI);
 
   try {
     await client.connect();
     const likesCollection = client.db(MongoDbName).collection(LikeCollection);
-
     const postLike = await likesCollection.findOne<PostLike>({ slug });
+
     likes.total = postLike ? postLike.users.reduce((prev, curr) => prev + curr.likes, 0) : 0;
-    likes.user = postLike?.users.find((user) => user.ip === ip)?.likes ?? 0;
+    likes.user = postLike?.users.find((user) => user.uuid === uuid)?.likes ?? 0;
   } catch (e) {
     return new Response("An error occurred while connecting to the DB.", { status: 500 });
   } finally {
@@ -84,12 +83,12 @@ export const GET: RequestHandler = async ({ url, getClientAddress }): Promise<Re
   return new Response(JSON.stringify({ likes }));
 };
 
-export const DELETE: RequestHandler = async ({ request, getClientAddress }): Promise<Response> => {
+export const DELETE: RequestHandler = async ({ request }): Promise<Response> => {
   if (!dev) {
     return new Response("When not in dev mode, DELETE is an illegal action.", { status: 405 });
   }
 
-  const ip = dev ? "localhost" : getClientAddress();
+  const uuid = "localhost";
   const { slug } = await request.json();
   const client = new MongoClient(MONGODB_URI);
 
@@ -98,7 +97,7 @@ export const DELETE: RequestHandler = async ({ request, getClientAddress }): Pro
 
     const likesCollection = client.db(MongoDbName).collection(LikeCollection);
     const post = await likesCollection.findOne<PostLike>({ slug });
-    const updatedUsers = post?.users.filter((user) => user.ip !== ip);
+    const updatedUsers = post?.users.filter((user) => user.uuid !== uuid);
     if (post && post.users.length > 0 && post.users.length !== updatedUsers?.length) {
       await likesCollection.updateOne({ slug }, { $set: { users: updatedUsers } });
     }

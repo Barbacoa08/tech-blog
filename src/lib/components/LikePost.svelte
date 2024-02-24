@@ -6,7 +6,12 @@
   import { toast } from "@zerodevx/svelte-toast";
 
   onMount(async () => {
-    const response = await fetch(`/likes?slug=${slug}`);
+    // `device-uuid` is a client only package, thus, must wait for `onMount` to run
+    const DeviceUUID = await import("device-uuid");
+    const deviceIdInstance = new DeviceUUID.DeviceUUID();
+    uuid = deviceIdInstance.get();
+
+    const response = await fetch(`/likes?slug=${slug}&uuid=${uuid}`);
     if (!response.ok) {
       console.error(`${response.status} - ${response.statusText}`);
       toast.push(await response.text());
@@ -25,7 +30,7 @@
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ slug }),
+      body: JSON.stringify({ slug, uuid }),
     });
 
     if (response.ok) {
@@ -42,6 +47,8 @@
   $: likes = { total: 0, user: 0 };
   $: disabled = false;
   $: if (likes.user >= 5) disabled = true;
+
+  let uuid = "";
 </script>
 
 <Button on:click={handleLike} {disabled} variant="icon" aria-label="I like this!">
