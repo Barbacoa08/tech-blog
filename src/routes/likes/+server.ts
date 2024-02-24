@@ -1,9 +1,7 @@
 import { dev } from "$app/environment";
+import { likesCollection } from "$db/likes";
 
 import type { RequestHandler } from "@sveltejs/kit";
-
-import { MONGODB_URI } from "$env/static/private";
-import { MongoClient } from "mongodb";
 
 interface User {
   uuid: string;
@@ -14,17 +12,11 @@ interface PostLike {
   users: User[];
 }
 
-const MongoDbName = "blog";
-const LikeCollection = "likes";
-
 export const POST: RequestHandler = async ({ request }): Promise<Response> => {
   const likes = { total: 0, user: 0 };
   const { slug, uuid } = await request.json();
-  const client = new MongoClient(MONGODB_URI);
 
   try {
-    await client.connect();
-    const likesCollection = client.db(MongoDbName).collection(LikeCollection);
     const postLike = await likesCollection.findOne<PostLike>({ slug });
 
     if (!postLike) {
@@ -54,8 +46,6 @@ export const POST: RequestHandler = async ({ request }): Promise<Response> => {
     }
   } catch (e) {
     return new Response("An error occurred while connecting to the DB.", { status: 500 });
-  } finally {
-    await client.close();
   }
 
   return new Response(JSON.stringify({ likes }));
@@ -65,19 +55,14 @@ export const GET: RequestHandler = async ({ url }): Promise<Response> => {
   const likes = { total: 0, user: 0 };
   const uuid = dev ? "localhost" : url.searchParams.get("uuid");
   const slug = url.searchParams.get("slug");
-  const client = new MongoClient(MONGODB_URI);
 
   try {
-    await client.connect();
-    const likesCollection = client.db(MongoDbName).collection(LikeCollection);
     const postLike = await likesCollection.findOne<PostLike>({ slug });
 
     likes.total = postLike ? postLike.users.reduce((prev, curr) => prev + curr.likes, 0) : 0;
     likes.user = postLike?.users.find((user) => user.uuid === uuid)?.likes ?? 0;
   } catch (e) {
     return new Response("An error occurred while connecting to the DB.", { status: 500 });
-  } finally {
-    await client.close();
   }
 
   return new Response(JSON.stringify({ likes }));
@@ -90,12 +75,8 @@ export const DELETE: RequestHandler = async ({ request }): Promise<Response> => 
 
   const uuid = "localhost";
   const { slug } = await request.json();
-  const client = new MongoClient(MONGODB_URI);
 
   try {
-    await client.connect();
-
-    const likesCollection = client.db(MongoDbName).collection(LikeCollection);
     const post = await likesCollection.findOne<PostLike>({ slug });
     const updatedUsers = post?.users.filter((user) => user.uuid !== uuid);
     if (post && post.users.length > 0 && post.users.length !== updatedUsers?.length) {
@@ -103,8 +84,6 @@ export const DELETE: RequestHandler = async ({ request }): Promise<Response> => 
     }
   } catch (e) {
     return new Response("An error occurred while connecting to the DB.", { status: 500 });
-  } finally {
-    await client.close();
   }
 
   return new Response();
