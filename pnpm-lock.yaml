@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+dependencies:
+  device-uuid:
+    specifier: 1.0.4
+    version: 1.0.4
+
 devDependencies:
   '@barbajoe/css-lib':
     specifier: 0.1.9
@@ -32,9 +37,6 @@ devDependencies:
   '@zerodevx/svelte-toast':
     specifier: 0.9.5
     version: 0.9.5(svelte@4.2.11)
-  device-uuid:
-    specifier: 1.0.4
-    version: 1.0.4
   eslint:
     specifier: 8.56.0
     version: 8.56.0
@@ -1111,7 +1113,7 @@ packages:
   /device-uuid@1.0.4:
     resolution: {integrity: sha512-nNbUKlCuXZ1BV4zKFr9z8VxypL1PCNExRoNtRx/mNKFcOEDWUdT3E1B4vw7LBWftBmixkrjQIjpdLov3EmEJjA==}
     engines: {node: '>=0.8'}
-    dev: true
+    dev: false
 
   /diff-sequences@29.6.3:
     resolution: {integrity: sha512-EjePK1srD3P08o2j4f0ExnylqRs5B9tJjcp9t1krH2qRi8CCdsYfwe9JgSLurFBWwq4uOlipzfk5fHNvwFKr8Q==}
