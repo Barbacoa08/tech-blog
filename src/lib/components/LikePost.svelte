@@ -66,7 +66,7 @@
     <Icons.ShootingStar sparkles />
   {/if}
 
-  {#if likes.user > 0}
+  {#if likes.total > 0}
     <div class="like-count" in:fade>
       {likes.total}
     </div>
