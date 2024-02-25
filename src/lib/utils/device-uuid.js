@@ -4,9 +4,7 @@
  * Licensed under MIT (https://github.com/biggora/device-uuid/blob/master/LICENSE)
  */
 
-/* globals
- screen, window, navigator
- */
+/* eslint-disable */
 
 const BOTS = [
   "\\+https:\\/\\/developers.google.com\\/\\+\\/web\\/snippet\\/",
