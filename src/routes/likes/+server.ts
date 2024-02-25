@@ -14,7 +14,10 @@ interface PostLike {
 
 export const POST: RequestHandler = async ({ request }): Promise<Response> => {
   const likes = { total: 0, user: 0 };
-  const { slug, uuid } = await request.json();
+  const body = await request.json();
+
+  if (dev) body.uuid = "localhost";
+  const { slug, uuid } = body;
 
   try {
     const postLike = await likesCollection.findOne<PostLike>({ slug });
