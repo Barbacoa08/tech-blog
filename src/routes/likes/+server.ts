@@ -3,6 +3,8 @@ import { likesCollection } from "$db/likes";
 
 import type { RequestHandler } from "@sveltejs/kit";
 
+import { DeviceUuid } from "./helper";
+
 interface User {
   uuid: string;
   likes: number;
@@ -17,7 +19,7 @@ export const POST: RequestHandler = async ({ request, getClientAddress }): Promi
   const { slug } = await request.json();
   const uuid = dev
     ? "localhost"
-    : await DeviceUuid(request.headers.get("user-agent"), getClientAddress());
+    : await DeviceUuid(request.headers.get("user-agent") || "", getClientAddress());
 
   try {
     const postLike = await likesCollection.findOne<PostLike>({ slug });
@@ -63,7 +65,7 @@ export const GET: RequestHandler = async ({
   const slug = url.searchParams.get("slug");
   const uuid = dev
     ? "localhost"
-    : await DeviceUuid(request.headers.get("user-agent"), getClientAddress());
+    : await DeviceUuid(request.headers.get("user-agent") || "", getClientAddress());
 
   try {
     const postLike = await likesCollection.findOne<PostLike>({ slug });

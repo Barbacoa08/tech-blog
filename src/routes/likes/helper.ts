@@ -1,12 +1,12 @@
-export const DeviceUuid = async (useragent: string, ip: string) => {
+export const DeviceUuid = async (useragent: string, ip: string): Promise<string> => {
   const hash = await sha256(useragent + "-" + ip);
   const uuid = cyrb53(hash);
 
-  return uuid;
+  return uuid.toString();
 };
 
 // https://stackoverflow.com/a/48161723/1022765
-const sha256 = async (message) => {
+const sha256 = async (message: string) => {
   // encode as UTF-8
   const msgBuffer = new TextEncoder().encode(message);
 
@@ -22,7 +22,7 @@ const sha256 = async (message) => {
 };
 
 // https://stackoverflow.com/a/52171480/1022765
-const cyrb53 = (str, seed = 0) => {
+const cyrb53 = (str: string, seed = 0) => {
   let h1 = 0xdeadbeef ^ seed,
     h2 = 0x41c6ce57 ^ seed;
   for (let i = 0, ch; i < str.length; i++) {
