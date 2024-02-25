@@ -25,7 +25,7 @@
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ slug, uuid }),
+      body: JSON.stringify({ slug }),
     });
 
     if (response.ok) {
@@ -42,8 +42,6 @@
   $: likes = { total: 0, user: 0 };
   $: disabled = false;
   $: if (likes.user >= 5) disabled = true;
-
-  let uuid = "";
 </script>
 
 <Button on:click={handleLike} {disabled} variant="icon" aria-label="I like this!">
