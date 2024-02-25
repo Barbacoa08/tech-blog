@@ -3,6 +3,8 @@ import { likesCollection } from "$db/likes";
 
 import type { RequestHandler } from "@sveltejs/kit";
 
+import { DeviceUuid } from "./helper";
+
 interface User {
   uuid: string;
   likes: number;
@@ -12,9 +14,12 @@ interface PostLike {
   users: User[];
 }
 
-export const POST: RequestHandler = async ({ request }): Promise<Response> => {
+export const POST: RequestHandler = async ({ request, getClientAddress }): Promise<Response> => {
   const likes = { total: 0, user: 0 };
-  const { slug, uuid } = await request.json();
+  const { slug } = await request.json();
+  const uuid = dev
+    ? "localhost"
+    : await DeviceUuid(request.headers.get("user-agent") || "", getClientAddress());
 
   try {
     const postLike = await likesCollection.findOne<PostLike>({ slug });
@@ -51,10 +56,16 @@ export const POST: RequestHandler = async ({ request }): Promise<Response> => {
   return new Response(JSON.stringify({ likes }));
 };
 
-export const GET: RequestHandler = async ({ url }): Promise<Response> => {
+export const GET: RequestHandler = async ({
+  request,
+  url,
+  getClientAddress,
+}): Promise<Response> => {
   const likes = { total: 0, user: 0 };
-  const uuid = dev ? "localhost" : url.searchParams.get("uuid");
   const slug = url.searchParams.get("slug");
+  const uuid = dev
+    ? "localhost"
+    : await DeviceUuid(request.headers.get("user-agent") || "", getClientAddress());
 
   try {
     const postLike = await likesCollection.findOne<PostLike>({ slug });
@@ -73,7 +84,7 @@ export const DELETE: RequestHandler = async ({ request }): Promise<Response> => 
     return new Response("When not in dev mode, DELETE is an illegal action.", { status: 405 });
   }
 
-  const uuid = "localhost";
+  const uuid = "localhost"; // dev mode, we never delete a real user's like
   const { slug } = await request.json();
 
   try {

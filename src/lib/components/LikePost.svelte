@@ -6,12 +6,7 @@
   import { toast } from "@zerodevx/svelte-toast";
 
   onMount(async () => {
-    // `device-uuid` is a client only package, thus, must wait for `onMount` to run
-    const DeviceUUID = await import("device-uuid");
-    const deviceIdInstance = new DeviceUUID.DeviceUUID();
-    uuid = deviceIdInstance.get();
-
-    const response = await fetch(`/likes?slug=${slug}&uuid=${uuid}`);
+    const response = await fetch(`/likes?slug=${slug}`);
     if (!response.ok) {
       console.error(`${response.status} - ${response.statusText}`);
       toast.push(await response.text());
