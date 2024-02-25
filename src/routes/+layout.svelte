@@ -2,6 +2,7 @@
   import { Icons, Layout, Link } from "@barbajoe/svelte-lib";
   import { SvelteToast } from "@zerodevx/svelte-toast";
 
+  import { onNavigate } from "$app/navigation";
   import { Header } from "$lib/components";
 
   import "./global.css";
@@ -9,6 +10,22 @@
   const options = {
     duration: 2000,
   };
+
+  // HACK: https://kit.svelte.dev/docs/faq#how-do-i-use-the-view-transitions-api-with-sveltekit
+  // consider using this package if we want to add complexity: https://github.com/paoloricciuti/sveltekit-view-transition
+  onNavigate((navigation) => {
+    const document = window.document as { startViewTransition?: (cb: () => void) => void };
+    if (!document.startViewTransition) return;
+
+    return new Promise((resolve) => {
+      if (!document.startViewTransition) return; // HACK: make ts happy
+
+      document.startViewTransition(async () => {
+        resolve();
+        await navigation.complete;
+      });
+    });
+  });
 </script>
 
 <Layout>
