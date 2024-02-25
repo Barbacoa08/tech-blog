@@ -76,7 +76,7 @@ export const DELETE: RequestHandler = async ({ request }): Promise<Response> => 
     return new Response("When not in dev mode, DELETE is an illegal action.", { status: 405 });
   }
 
-  const uuid = "localhost";
+  const uuid = "localhost"; // dev mode, we never delete a real user's like
   const { slug } = await request.json();
 
   try {
