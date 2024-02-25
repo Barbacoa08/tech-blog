@@ -20,9 +20,9 @@
     return new Promise((resolve) => {
       if (!document.startViewTransition) return; // HACK: make ts happy
 
-      document.startViewTransition(async () => {
+      document.startViewTransition(() => {
         resolve();
-        await navigation.complete;
+        navigation.complete.then(resolve);
       });
     });
   });
