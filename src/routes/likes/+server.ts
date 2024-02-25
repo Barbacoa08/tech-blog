@@ -12,12 +12,12 @@ interface PostLike {
   users: User[];
 }
 
-export const POST: RequestHandler = async ({ request }): Promise<Response> => {
+export const POST: RequestHandler = async ({ request, getClientAddress }): Promise<Response> => {
   const likes = { total: 0, user: 0 };
-  const body = await request.json();
-
-  if (dev) body.uuid = "localhost";
-  const { slug, uuid } = body;
+  const { slug } = await request.json();
+  const uuid = dev
+    ? "localhost"
+    : await DeviceUuid(request.headers.get("user-agent"), getClientAddress());
 
   try {
     const postLike = await likesCollection.findOne<PostLike>({ slug });
@@ -54,10 +54,16 @@ export const POST: RequestHandler = async ({ request }): Promise<Response> => {
   return new Response(JSON.stringify({ likes }));
 };
 
-export const GET: RequestHandler = async ({ url }): Promise<Response> => {
+export const GET: RequestHandler = async ({
+  request,
+  url,
+  getClientAddress,
+}): Promise<Response> => {
   const likes = { total: 0, user: 0 };
-  const uuid = dev ? "localhost" : url.searchParams.get("uuid");
   const slug = url.searchParams.get("slug");
+  const uuid = dev
+    ? "localhost"
+    : await DeviceUuid(request.headers.get("user-agent"), getClientAddress());
 
   try {
     const postLike = await likesCollection.findOne<PostLike>({ slug });
