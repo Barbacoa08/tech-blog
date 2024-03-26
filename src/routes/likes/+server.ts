@@ -40,7 +40,7 @@ export const POST: RequestHandler = async ({ request, getClientAddress }): Promi
       } else {
         await likesCollection.updateOne(
           { slug },
-          { $push: { users: [{ uuid, likes: 1 }] } as unknown as undefined }, // HACK: types have changed in latest `mongodb` version
+          { $push: { users: { uuid, likes: 1 } as User } as unknown as undefined },
           { upsert: true },
         );
         user = { uuid, likes: 1 };
