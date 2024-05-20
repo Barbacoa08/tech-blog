@@ -9,17 +9,17 @@ importers:
   .:
     devDependencies:
       '@barbajoe/css-lib':
-        specifier: 0.1.9
-        version: 0.1.9
+        specifier: 0.1.11
+        version: 0.1.11
       '@barbajoe/svelte-lib':
-        specifier: 0.3.5
-        version: 0.3.5(@barbajoe/css-lib@0.1.9)(svelte@4.2.17)
+        specifier: 0.3.6
+        version: 0.3.6(@barbajoe/css-lib@0.1.11)(svelte@4.2.17)
       '@sveltejs/adapter-netlify':
         specifier: 4.2.0
-        version: 4.2.0(@sveltejs/kit@2.5.8(@sveltejs/vite-plugin-svelte@3.1.0(svelte@4.2.17)(vite@5.2.11))(svelte@4.2.17)(vite@5.2.11))
+        version: 4.2.0(@sveltejs/kit@2.5.9(@sveltejs/vite-plugin-svelte@3.1.0(svelte@4.2.17)(vite@5.2.11))(svelte@4.2.17)(vite@5.2.11))
       '@sveltejs/kit':
-        specifier: 2.5.8
-        version: 2.5.8(@sveltejs/vite-plugin-svelte@3.1.0(svelte@4.2.17)(vite@5.2.11))(svelte@4.2.17)(vite@5.2.11)
+        specifier: 2.5.9
+        version: 2.5.9(@sveltejs/vite-plugin-svelte@3.1.0(svelte@4.2.17)(vite@5.2.11))(svelte@4.2.17)(vite@5.2.11)
       '@sveltejs/vite-plugin-svelte':
         specifier: 3.1.0
         version: 3.1.0(svelte@4.2.17)(vite@5.2.11)
@@ -42,8 +42,8 @@ importers:
         specifier: 2.39.0
         version: 2.39.0(eslint@8.57.0)(svelte@4.2.17)
       mongodb:
-        specifier: 6.6.1
-        version: 6.6.1
+        specifier: 6.6.2
+        version: 6.6.2
       prettier:
         specifier: 3.2.5
         version: 3.2.5
@@ -82,11 +82,11 @@ packages:
     resolution: {integrity: sha512-lFMjJTrFL3j7L9yBxwYfCq2k6qqwHyzuUl/XBnif78PWTJYyL/dfowQHWE3sp6U6ZzqWiiIZnpTMO96zhkjwtg==}
     engines: {node: '>=6.0.0'}
 
-  '@barbajoe/css-lib@0.1.9':
-    resolution: {integrity: sha512-Zm9zV5BtRv3m64Cf3pM9p+Ua5XBUp5WtmPN/CZWFz5XmlJVclOYqEP0HRCSjy1X95R9PBYIk+HqgNT6BDteG2A==}
+  '@barbajoe/css-lib@0.1.11':
+    resolution: {integrity: sha512-H+vvQCJV4o3oXsM93CR16mJyoxAJfKk5gQuhwg9hexFVSaz0Dclw7768w0Fb3owYt8PdVG5Hug7JhPaaaULbnQ==}
 
-  '@barbajoe/svelte-lib@0.3.5':
-    resolution: {integrity: sha512-Ao4PF4rgmnWag0HQ64k593C54963rzZ7B54DeqN8YBgxYwEDE/OK7CwQKf7i+71ZHslZWKuJwjI1GeUWcfeRsA==}
+  '@barbajoe/svelte-lib@0.3.6':
+    resolution: {integrity: sha512-NuRgh2vGJaUNCUCpVll4b7mgj07g8XdCYpZSjv4oB3wguz7v/LPXo1YOc2TKu9xjlsnHxltrAQ/Yl7ZPn+mppg==}
     peerDependencies:
       '@barbajoe/css-lib': '*'
       svelte: ^4
@@ -374,8 +374,8 @@ packages:
     peerDependencies:
       '@sveltejs/kit': ^2.4.0
 
-  '@sveltejs/kit@2.5.8':
-    resolution: {integrity: sha512-ZQXYaVHd1p0kDGwOi4l82i5kAiUQtrhMthDKtJi0zVzmNupKJ0ZlBVAoceuarCuIntPNctyQchW29h5DkFxd1Q==}
+  '@sveltejs/kit@2.5.9':
+    resolution: {integrity: sha512-x8biUVHPQq075/ESH/UO+fwENtAcw0kg9+bloqqEnbLUNWcrWpmcL3vKrKJc4vaVh/CYKFXn47N98Sbt/Y3vKQ==}
     engines: {node: '>=18.13'}
     hasBin: true
     peerDependencies:
@@ -590,8 +590,8 @@ packages:
     resolution: {integrity: sha512-Dr3sfKRP6oTcjf2JmUmFJfeVMvXBdegxB0iVQ5eb2V10uFJUCAS8OByZdVAyVb8xXNz3GjjTgj9kLWsZTqE6kw==}
     engines: {node: '>= 8.10.0'}
 
-  clsx@2.1.0:
-    resolution: {integrity: sha512-m3iNNWpd9rl3jvvcBnu70ylMdrXt8Vlq4HYadnU5fwcOtvkSQWPmj7amUcDT2qYI7risszBjI5AUIUox9D16pg==}
+  clsx@2.1.1:
+    resolution: {integrity: sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==}
     engines: {node: '>=6'}
 
   code-red@1.0.4:
@@ -994,8 +994,8 @@ packages:
   mongodb-connection-string-url@3.0.0:
     resolution: {integrity: sha512-t1Vf+m1I5hC2M5RJx/7AtxgABy1cZmIPQRMXw+gEIPn/cZNF3Oiy+l0UIypUwVB5trcWHq3crg2g3uAR9aAwsQ==}
 
-  mongodb@6.6.1:
-    resolution: {integrity: sha512-FvA9ocQzRzzvhin1HHLrZDEm0gWvnksbiciYrU/0GmET/t/DdDiMJroA7rfDrHM3AInwGVYw2fwAU2oNYUyUEw==}
+  mongodb@6.6.2:
+    resolution: {integrity: sha512-ZF9Ugo2JCG/GfR7DEb4ypfyJJyiKbg5qBYKRintebj8+DNS33CyGMkWbrS9lara+u+h+yEOGSRiLhFO/g1s1aw==}
     engines: {node: '>=16.20.1'}
     peerDependencies:
       '@aws-sdk/credential-providers': ^3.188.0
@@ -1521,12 +1521,12 @@ snapshots:
       '@jridgewell/gen-mapping': 0.3.3
       '@jridgewell/trace-mapping': 0.3.20
 
-  '@barbajoe/css-lib@0.1.9': {}
+  '@barbajoe/css-lib@0.1.11': {}
 
-  '@barbajoe/svelte-lib@0.3.5(@barbajoe/css-lib@0.1.9)(svelte@4.2.17)':
+  '@barbajoe/svelte-lib@0.3.6(@barbajoe/css-lib@0.1.11)(svelte@4.2.17)':
     dependencies:
-      '@barbajoe/css-lib': 0.1.9
-      clsx: 2.1.0
+      '@barbajoe/css-lib': 0.1.11
+      clsx: 2.1.1
       svelte: 4.2.17
 
   '@esbuild/aix-ppc64@0.20.2':
@@ -1715,14 +1715,14 @@ snapshots:
 
   '@sinclair/typebox@0.27.8': {}
 
-  '@sveltejs/adapter-netlify@4.2.0(@sveltejs/kit@2.5.8(@sveltejs/vite-plugin-svelte@3.1.0(svelte@4.2.17)(vite@5.2.11))(svelte@4.2.17)(vite@5.2.11))':
+  '@sveltejs/adapter-netlify@4.2.0(@sveltejs/kit@2.5.9(@sveltejs/vite-plugin-svelte@3.1.0(svelte@4.2.17)(vite@5.2.11))(svelte@4.2.17)(vite@5.2.11))':
     dependencies:
       '@iarna/toml': 2.2.5
-      '@sveltejs/kit': 2.5.8(@sveltejs/vite-plugin-svelte@3.1.0(svelte@4.2.17)(vite@5.2.11))(svelte@4.2.17)(vite@5.2.11)
+      '@sveltejs/kit': 2.5.9(@sveltejs/vite-plugin-svelte@3.1.0(svelte@4.2.17)(vite@5.2.11))(svelte@4.2.17)(vite@5.2.11)
       esbuild: 0.20.2
       set-cookie-parser: 2.6.0
 
-  '@sveltejs/kit@2.5.8(@sveltejs/vite-plugin-svelte@3.1.0(svelte@4.2.17)(vite@5.2.11))(svelte@4.2.17)(vite@5.2.11)':
+  '@sveltejs/kit@2.5.9(@sveltejs/vite-plugin-svelte@3.1.0(svelte@4.2.17)(vite@5.2.11))(svelte@4.2.17)(vite@5.2.11)':
     dependencies:
       '@sveltejs/vite-plugin-svelte': 3.1.0(svelte@4.2.17)(vite@5.2.11)
       '@types/cookie': 0.6.0
@@ -1989,7 +1989,7 @@ snapshots:
     optionalDependencies:
       fsevents: 2.3.3
 
-  clsx@2.1.0: {}
+  clsx@2.1.1: {}
 
   code-red@1.0.4:
     dependencies:
@@ -2425,7 +2425,7 @@ snapshots:
       '@types/whatwg-url': 11.0.4
       whatwg-url: 13.0.0
 
-  mongodb@6.6.1:
+  mongodb@6.6.2:
     dependencies:
       '@mongodb-js/saslprep': 1.1.5
       bson: 6.7.0
